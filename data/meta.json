@@ -1,1 +1,50 @@
-
+{
+  "simulator": "comsol",
+  "dt": 0.01,
+  "collision_radius": null,
+  "features": {
+    "cells": {
+      "type": "static",
+      "shape": [
+        1,
+        32,
+        3
+      ],
+      "dtype": "int64"
+    },
+    "mesh_pos": {
+      "type": "static",
+      "shape": [
+        1,
+        25,
+        2
+      ],
+      "dtype": "float32"
+    },
+    "node_type": {
+      "type": "static",
+      "shape": [
+        1,
+        25,
+        1
+      ],
+      "dtype": "int64"
+    },
+    "temperature": {
+      "type": "dynamic",
+      "shape": [
+        2,
+        25,
+        1
+      ],
+      "dtype": "float32"
+    }
+  },
+  "field_names": [
+    "cells",
+    "mesh_pos",
+    "node_type",
+    "temperature"
+  ],
+  "trajectory_length": 2
+}
