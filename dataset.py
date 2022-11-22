@@ -69,8 +69,12 @@ def _parse(proto,meta):
        'temperature': tf.io.VarLenFeature(tf.float32)
     })
     out = {}
+    print(features['temperature'].shape)
     for key, field in meta['features'].items():
+        print('key: ',key)
+        print('field: ',field)
         data = features[key].values
+        print('data: ',data,'\n')
         if key=='cells':
             data = tf.reshape(data, [1,32,3])
         elif key=='mesh_pos':
@@ -78,18 +82,15 @@ def _parse(proto,meta):
         elif key=='node_type':
             data = tf.reshape(data, [1,25,1])
         elif key=='temperature':
-            data = tf.reshape(data, [1,25,1])
+            data = tf.reshape(data, [2,25,1])
             
         if field['type'] == 'static':
             data = tf.tile(data, [meta['trajectory_length'], 1, 1])
         elif field['type'] != 'dynamic':
             raise ValueError('invalid data format')
         out[key]=data
-        print('key: ',key)
-        print('data: ',data)
-        print('')
+    
     return out
-
 
 def load_dataset(path, split):
   """Load dataset."""
